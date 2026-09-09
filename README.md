@@ -2,6 +2,20 @@
 
 Text and icons for Spotify. Nocturne pairs deep green-black with ivory and jade; Linen uses warm paper and dark green. Serif headings and readable lists put the music first.
 
+## Before and after
+
+**Before — Spotify with album artwork**
+
+![Spotify before Quiet, with album covers and the Now Playing sidebar](docs/images/before.png)
+
+**After — Quiet, with text-free genre and instrument icons and the sidebar closed**
+
+![Live Spotify with Quiet applied, readable playlist names, instrument icons, and the sidebar closed](docs/images/after.png)
+
+These are real Windows Spotify screenshots. Recommendations, playback, and window size differ between captures.
+
+The Now Playing sidebar can be closed using the visible sidebar button at its top left, and reopened from the player artwork/icon. The header has its own space above the video switch and track details. Music-video cards use a screen-and-play symbol; icons have no visible captions, while accessible labels remain available to screen readers.
+
 ## Windows
 
 Use Spotify's **desktop edition** from [Spotify](https://www.spotify.com/download/windows/), and open it before installing. This installer does not uninstall or replace Spotify. The Microsoft Store edition is not supported by this package.

@@ -1,5 +1,6 @@
 // Original Quiet line drawings. No remote assets or audio/account requests.
 export const drawings = {
+  musicVideo: '<rect x="2" y="4" width="20" height="15" rx="3"/><path d="m10 8 6 3.5-6 3.5Z M8 22h8"/>',
   record: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M5.7 10a7 7 0 0 1 4.3-4.3M14 18.3a7 7 0 0 0 4.3-4.3"/>',
   piano: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7.5 12v7M12 12v7M16.5 12v7M7.5 5v7M12 5v7M16.5 5v7"/><path stroke-width="3" d="M7.5 6v5M12 6v5M16.5 6v5"/>',
   strings: '<path d="m14 3 3 1-4 11M15 3l1-2M15 8c4 0 5 3 2 5 3 5-1 9-6 7s-5-6-1-8c-2-3 0-6 3-5M9 16l5 2M21 4 14 22"/>',
@@ -47,7 +48,8 @@ const instruments = [
   [/\b(sax|saxophone)\b/i,'sax'], [/\b(trumpet|brass)\b/i,'trumpet'],
   [/\b(vocals?|choir|choral|a cappella)\b/i,'mic'], [/\b(synth|synthesizer)\b/i,'synth'],
 ];
-export function classify(text = '') {
+export function classify(text = '', mediaType = 'audio') {
+  if(mediaType === 'video') return {label:'Music video',icons:['musicVideo'],basis:'Spotify identifies this as a video'};
   const explicit = instruments.filter(([re]) => re.test(text)).map(([,id]) => id);
   if (explicit.length) return {label:'Instrument cues',icons:explicit.slice(0,3),basis:'Instruments named in the title'};
   const rule = rules.find(([re]) => re.test(text));
@@ -81,7 +83,7 @@ export function load() {
         if(!host || /BUTTON|PICTURE/.test(host.tagName) || img.closest('[data-testid="user-widget-avatar"]'))continue;
         const box=host.getBoundingClientRect();
         if(box.width<28 || box.height<28 || box.width>box.height*2)continue;
-        const cue=classify(titleFor(img));
+        const cue=classify(titleFor(img),img.matches('[data-testid="video-card-image"]') ? 'video' : 'audio');
         const key=JSON.stringify(cue); let data=mounted.get(host);
         if(data?.key===key && data.badge.isConnected) continue;
         if(data)data.badge.remove();
@@ -90,11 +92,11 @@ export function load() {
         badge.setAttribute('aria-label',`${cue.label}: ${cue.icons.join(', ')}. ${cue.basis}`);
         badge.title=badge.getAttribute('aria-label');
         // Only constant artwork/labels from this file enter markup. Spotify text never does.
-        badge.innerHTML=`<span class="quiet-symbol-instruments">${cue.icons.map(svg).join('')}</span><span class="quiet-symbol-caption">${cue.label}</span>`;
+        badge.innerHTML=`<span class="quiet-symbol-instruments">${cue.icons.map(svg).join('')}</span>`;
         host.classList.add('quiet-symbol-host');host.append(badge);
         mounted.set(host,{img,badge,key});
       }
-    } finally {if(!disposed)observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['alt','src']});}
+    } finally {if(!disposed)observer.observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['alt','src','data-testid']});}
   }
   scan();
   return ()=>{disposed=true;observer.disconnect();cancelAnimationFrame(frame);for(const [host,{badge}] of mounted){badge.remove();host.classList.remove('quiet-symbol-host');}mounted.clear();};

@@ -4,7 +4,7 @@
 
 /* Suppress raster artwork, video imagery, and decorative backgrounds.
    Keep the layout/accessibility of image-only buttons intact. */
-body img, body picture, body video, body canvas {
+.Root img, .Root picture, .Root video, .Root canvas {
   opacity: 0 !important;
 }
 .Root *, .Root *::before, .Root *::after {

@@ -94,9 +94,6 @@ body img, body picture, body video, body canvas {
 .Root .main-type-metronome { font-size: 12px !important; }
 .main-trackList-trackListRow { min-height: 64px !important; }
 .main-card-card:focus-within, .main-card-card:hover { background: #292929 !important; }
-
-
-
 /* QUIET REFINEMENT */
 /* Source reference only; appended to user.css by build.cjs. */
 :root {

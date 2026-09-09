@@ -1,5 +1,5 @@
 const fs=require('fs');const path=require('path');const dir=__dirname;
-const theme=path.join(dir,'Quiet');const css=fs.readFileSync(path.join(theme,'user.css'),'utf8').split('/* QUIET REFINEMENT */')[0];
+const theme=path.join(dir,'Quiet');const css=fs.readFileSync(path.join(theme,'user.css'),'utf8').split('/* QUIET REFINEMENT */')[0].trimEnd();
 fs.writeFileSync(path.join(theme,'user.css'),css+'\n/* QUIET REFINEMENT */\n'+fs.readFileSync(path.join(theme,'refinement.css'),'utf8'));
 const palettes={Nocturne:{text:'EFEADF',subtext:'ADAFA8',main:'111714',sidebar:'0D120F',player:'0D120F',card:'19221D',shadow:'000000','selected-row':'253B2E',button:'A9D7BB','button-active':'C2E8CF','button-disabled':'56655C','tab-active':'253B2E',notification:'253B2E','notification-error':'E38D86',misc:'ADAFA8'},Linen:{text:'242C26',subtext:'586259',main:'F2F0E8',sidebar:'E8E7DD',player:'E8E7DD',card:'E6E9DD',shadow:'C8CCBF','selected-row':'D9E5D6',button:'326446','button-active':'234F35','button-disabled':'7D8D80','tab-active':'D9E5D6',notification:'D9E5D6','notification-error':'A23535',misc:'586259'}};
 fs.writeFileSync(path.join(theme,'color.ini'),Object.entries(palettes).map(([name,values])=>'['+name+']\n'+Object.entries(values).map(([k,v])=>k+' = '+v).join('\n')).join('\n\n')+'\n');

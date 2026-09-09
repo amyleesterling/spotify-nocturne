@@ -39,7 +39,7 @@ else : > "$quiet_backup/config-rest.txt"; fi
 cat "$quiet_backup/config-rest.txt" > "$quiet_config"
 printf '\nmirror = false\ndaemon = false\nspotify_data_dir = "%s"\nspotify_exec = "%s"\noffline_bnk_dir = "%s"\n' "$(quiet_toml "$quiet_app/Contents/Resources")" "$(quiet_toml "$quiet_app/Contents/MacOS/Spotify")" "$(quiet_toml "$HOME/Library/Application Support/Spotify/PersistentCache")" >> "$quiet_config"
 mkdir -p "$quiet_destination"
-cp "$quiet_source/Quiet-v3/metadata.json" "$quiet_source/Quiet-v3/user.css" "$quiet_source/Quiet-v3/color.ini" "$quiet_destination/"
+cp "$quiet_source/Quiet-v3/metadata.json" "$quiet_source/Quiet-v3/user.css" "$quiet_source/Quiet-v3/color.ini" "$quiet_source/Quiet-v3/icons.js" "$quiet_destination/"
 awk -v wanted="[$quiet_palette]" '/^\[/{section=$0} section==wanted {print}' "$quiet_destination/color.ini" > "$quiet_backup/palette.ini"
 cp "$quiet_backup/palette.ini" "$quiet_destination/color.ini"
 export RUST_LOG=info

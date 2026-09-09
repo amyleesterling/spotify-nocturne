@@ -30,7 +30,7 @@ The installers download the official **Spicetify 3.0.0-beta.14** runtime when ab
 
 Runtime location on Windows: `%LOCALAPPDATA%\Spicetify\bin`. On Mac: `~/.config/spicetify/bin`. The installers print the configuration backup location. They preserve unrelated configuration keys and stop on errors. Existing different runtime versions are not silently replaced.
 
-The theme itself is CSS only: no account access, external fonts, or playback interception. Images and videos are visually hidden in Spotify's music interface; this does not prevent media downloads or turn music videos into audio tracks. Native SVG controls remain visible. Login graphics are outside the artwork suppression rules.
+The theme includes original SVG line icons and a small local JavaScript module that reads visible titles to choose symbols. It makes no account/API requests, loads no remote assets, and does not intercept playback. Genre symbols are title-based cues, not detected instrumentation. Explicit instrument names can produce up to three icons; unknown titles use a neutral record. Images and videos are visually hidden in Spotify's music interface; this does not prevent media downloads or turn music videos into audio tracks. Native SVG controls remain visible. Login graphics are outside the artwork suppression rules.
 
 ## Restore stock Spotify
 
@@ -50,7 +50,7 @@ To return to a previous Spicetify configuration, restore `config.toml` and the `
 
 ## Verification and limits — September 9, 2026
 
-Windows desktop Spotify **1.2.99.317** with Spicetify **3.0.0-beta.14**: theme installation succeeded, four modules staged, and Spotify restarted to a working sign-in screen. Signed-in library and playback verification is pending user sign-in. Do not interpret installation success as full visual verification.
+Windows desktop Spotify **1.2.99.317** with Spicetify **3.0.0-beta.14**: theme installation succeeded, four modules staged, and Spotify restarted to a working sign-in screen. Signed-in Home and library were visually checked with genre/instrument symbols. Icon classification and DOM tests cover multi-icons, recycled rows, duplicate prevention, and cleanup. Audio playback itself was not tested.
 
 The earlier Store-edition attempts produced an empty window before theme scripts ran. Spicetify 2.44.0 also does not list support for this Spotify version; the current installers use the newer beta instead. On the development machine, Store app data was backed up before the user-approved replacement with desktop Spotify.
 

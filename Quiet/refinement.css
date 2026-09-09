@@ -1,0 +1,86 @@
+/* Source reference only; appended to user.css by build.cjs. */
+:root {
+  --quiet-paper: var(--spice-text, #EFEADF);
+  --quiet-muted: var(--spice-subtext, #ADAFA8);
+  --quiet-ink: var(--spice-main, #111714);
+  --quiet-surface: var(--spice-card, #19221D);
+  --quiet-accent: var(--spice-button, #A9D7BB);
+  --quiet-rule: color-mix(in srgb, var(--quiet-paper) 14%, transparent);
+  --quiet-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --quiet-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+}
+.Root { font-family: var(--quiet-sans) !important; color: var(--quiet-paper); }
+.Root :is(.main-view-container, .main-home-home, .main-home-homeHeader,
+ .main-actionBarBackground-background) { background: var(--quiet-ink) !important; }
+.Root :is(.main-yourLibraryX-libraryContainer, .Root__nav-bar) {
+  background: var(--spice-sidebar, #0D120F) !important;
+  border-right: 1px solid var(--quiet-rule);
+}
+.Root :is(.main-card-card, [data-testid="card"]) {
+  background: transparent !important;
+  border: 1px solid var(--quiet-rule);
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  padding: 20px !important;
+}
+.Root :is(.main-card-card, [data-testid="card"]):is(:hover, :focus-within) {
+  background: var(--quiet-surface) !important;
+  border-color: var(--quiet-accent);
+}
+.Root :is(.main-card-imageContainer, .main-image-imageContainer,
+ .main-coverSlotCollapsed-container, .main-avatar-avatar,
+ [data-testid="cover-art"], [data-testid="card-image"]) {
+  background: transparent !important;
+}
+.Root :is(.main-card-imageContainer, .main-image-imageContainer,
+ .main-coverSlotCollapsed-container, .main-avatar-avatar,
+ [data-testid="cover-art"], [data-testid="card-image"])::after {
+  color: var(--quiet-accent) !important;
+  font-family: "Segoe UI Symbol", "Apple Symbols", sans-serif;
+}
+.Root .main-entityHeader-container { padding-block: 40px !important; }
+.Root .main-entityHeader-title {
+  font-family: var(--quiet-serif) !important;
+  font-size: clamp(36px, 5vw, 80px) !important;
+  font-weight: 400 !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.025em !important;
+  color: var(--quiet-paper) !important;
+}
+.Root :is(.main-shelf-title, .main-nowPlayingView-trackInfo a) {
+  font-family: var(--quiet-serif) !important;
+  font-weight: 400 !important;
+  font-size: clamp(24px, 2.5vw, 36px) !important;
+  line-height: 1.25 !important;
+}
+.Root :is(.main-cardHeader-link, .main-trackList-rowTitle) {
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  color: var(--quiet-paper) !important;
+}
+.Root :is(.main-cardSubHeader-root, .main-type-cello,
+ .main-trackList-rowSubTitle, .main-nowPlayingWidget-artist) {
+  color: var(--quiet-muted) !important;
+}
+.Root .main-trackList-trackListRow {
+  min-height: 72px !important;
+  border-bottom: 1px solid var(--quiet-rule);
+  border-radius: 0 !important;
+}
+.Root .main-trackList-trackListRow:is(:hover, :focus-within) {
+  background: var(--quiet-surface) !important;
+}
+.Root .main-nowPlayingBar-container {
+  background: var(--spice-player, #0D120F) !important;
+  border-top: 1px solid var(--quiet-rule);
+  padding-block: 12px !important;
+}
+.Root .main-nowPlayingWidget-trackInfo { overflow-wrap: anywhere; }
+.Root .main-playPauseButton-button {
+  background: var(--quiet-accent) !important;
+  color: var(--spice-main, #111714) !important;
+}
+.Root .main-gridContainer-gridContainer { gap: 16px !important; }
+@media (prefers-reduced-motion: no-preference) {
+  .Root .main-card-card { transition: background-color 150ms, border-color 150ms; }
+}
